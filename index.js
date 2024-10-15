@@ -1,33 +1,28 @@
-// Create the playable character
-const pc = newPlayableCharacter(100, 110)
-
-// Create a non-playable character
-const npc = newNonPlayableCharacter(50, 300)
-
-// have the NPC start walking east immediately
-
-async function moveNPC(){
-    await npc.walkNorth(1400)
-    await npc.walkEast(1200)
-    await npc.walkSouth(300)
-    await npc.walkEast(1500)
-    await npc.walkSouth(1500)
-    await npc.walkWest(2700)
-    await npc.walkNorth(400)
+function newImage(url, left, bottom){
+    let object = document.createElement('img')
+    object.src = url
+    object.style.position = 'fixed'
+    object.style.left = left + 'px'
+    object.style.bottom = bottom + 'px'
+    document.body.append(object)
+    return object
 }
 
-moveNPC()
+function newItem(url, left, bottom){
+    let object = newImage(url, left, bottom)
 
-// Create the inventory
-const inventory = newInventory()
-move(inventory).to(0, 0)
+    object.addEventListener('dblclick', () => {
+        object.remove()
+    })
+}
 
-// Create everything else
-move(newImage('assets/tree.png')).to(200, 450)
-move(newImage('assets/pillar.png')).to(350, 250)
-move(newImage('assets/pine-tree.png')).to(450, 350)
-move(newImage('assets/crate.png')).to(150, 350)
-move(newImage('assets/well.png')).to(500, 575)
-move(newItem('assets/sword.png')).to(500, 555)
-move(newItem('assets/shield.png')).to(165, 335)
-move(newItem('assets/staff.png')).to(600, 250)
+newImage('assets/green-character.gif', 100, 100)
+newImage('assets/tree.png', 200, 300)
+newImage('assets/pillar.png', 350, 100)
+newImage('assets/pine-tree.png', 450, 200)
+newImage('assets/crate.png', 150, 200)
+newImage('assets/well.png', 500, 425)
+
+newItem('assets/sword.png', 500, 405)
+newItem('assets/shield.png', 165, 185)
+newItem('assets/staff.png', 600, 100)
